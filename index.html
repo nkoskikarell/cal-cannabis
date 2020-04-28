@@ -1,0 +1,17 @@
+import pandas as pd
+%matplotlib inline
+import matplotlib.pyplot as plt
+top10 = pd.read_csv('top10lic.csv')
+top10 = top10.drop(['total'], axis=1)
+top10.dropna()
+top10_plot = pd.read_csv('top10_license_nmbrs.csv')
+top10_plot.head()
+import plotly
+import plotly.express as px
+import plotly
+fig = px.pie(top10_plot, values='#licenses', names="license_holder", color_discrete_sequence=px.colors.sequential.algae_r, title= "California Cannabis Cultivation License Holders, % of Total: 2019")
+fig.update_traces(textposition='inside', textinfo='percent+label',  insidetextorientation='radial')
+                  
+fig.update_layout(showlegend=False)
+fig.show()
+
